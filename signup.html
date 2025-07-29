@@ -7,25 +7,22 @@
 </head>
 <body>
 <div class="container">
-    <h2>AgroFlow</h2>
+    <h2><img src="logo.jpg" alt="Logo" class="logo"> AgroFlow</h2>
     <h3>Officer Registration</h3>
     <form action="#" method="post">
-        <label for="name">Full Name:</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" name="name" placeholder="Officer ID" required>
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="text" name="nid" placeholder="NID Number" required>
+        <input type="text" name="office_location" placeholder="Office Location" required>
+        <input type="text" name="region_assigned" placeholder="Region Assigned" required>
+        <input type="text" name="contact" placeholder="Contact Number" required>
+        <input type="text" name="contact" placeholder="E-mail">
+        <input type="text" name="contact" placeholder="Password" required>
+        <input type="text" name="contact" placeholder="Confirm Password" required>
 
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" required>
-
-        <label for="nid">NID Number:</label>
-        <input type="text" id="nid" name="nid" required>
-
-        <label for="password">Create Password:</label>
-        <input type="password" id="password" name="password" required>
-
-        <label for="confirm">Confirm Password:</label>
-        <input type="password" id="confirm" name="confirm" required>
-
-        <button type="submit">Register</button>
+        <div class="button-wrapper">
+            <button type="submit">Sign Up</button>
+        </div>
 
         <p class="switch">Already have an account? <a href="login.html">Login</a></p>
     </form>

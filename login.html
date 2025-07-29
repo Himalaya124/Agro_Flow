@@ -7,16 +7,17 @@
 </head>
 <body>
 <div class="container">
-    <h2>Agro Flow</h2>
+    <h2><img src="logo.jpg" alt="Logo" class="logo"> AgroFlow</h2>
     <h3>Officer Login</h3>
     <form action="#" method="post">
-        <label for="nid">NID or Phone Number:</label>
-        <input type="text" id="nid" name="nid" required>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-
-        <button type="submit">Login</button>
+        <input type="text" id="name" placeholder="Officer ID" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <div class="forgot">
+            <a href="#">Forgot Password?</a>
+        </div>
+        <div class="button-wrapper">
+            <button type="submit">Login</button>
+        </div>
 
         <p class="switch">Don't have an account? <a href="signup.html">Sign Up</a></p>
     </form>
