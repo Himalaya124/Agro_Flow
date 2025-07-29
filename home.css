@@ -1,0 +1,119 @@
+/* General styles */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f7f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background-color: #2e7d32;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.logo-title img {
+    width: 50px;
+    height: auto;
+}
+
+.logo-title h1 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+/* Navigation */
+nav {
+    background-color: #ffffff;
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main content */
+main {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: auto;
+    flex: 1;
+}
+
+section {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+section h2 {
+    color: #2e7d32;
+    margin-bottom: 15px;
+}
+
+section p {
+    color: #444;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: auto;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    color: #444;
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+/* Call-to-action buttons */
+.cta-buttons {
+    margin-top: 30px;
+}
+
+.cta-buttons a {
+    text-decoration: none;
+    padding: 12px 25px;
+    background-color: #2e7d32;
+    color: white;
+    border-radius: 6px;
+    font-weight: bold;
+    margin: 0 10px;
+    display: inline-block;
+}
+
+.cta-buttons a:hover {
+    background-color: #256428;
+}
+
+/* Footer */
+footer {
+    background-color: #2e7d32;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+}
