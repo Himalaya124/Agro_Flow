@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AgroFlow - Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen font-sans">
+
+<!-- Header / Navbar -->
+<!-- Header / Navbar -->
+<header class="bg-white shadow fixed w-full z-50">
+  <div class="container mx-auto flex justify-between items-center py-4 px-6">
+    <!-- Logo + Title -->
+    <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition">
+      <img src="/images/logo.jpg" alt="AgroFlow Logo" class="w-10 h-auto rounded-lg" />
+      <span class="text-2xl font-bold text-green-800">AgroFlow</span>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="hidden md:flex space-x-8 font-semibold text-green-800">
+      <a href="#about" class="hover:text-green-900">About</a>
+      <a href="#features" class="hover:text-green-900">Features</a>
+      <a th:href="@{/login}" class="hover:text-green-900">Login</a>
+      <a th:href="@{/signup}" class="hover:text-green-900">Sign Up</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="bg-green-800 text-white pt-28 pb-20 text-center">
+  <div class="container mx-auto px-6">
+    <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+      Empowering Agriculture with <span class="text-green-300">AgroFlow</span>
+    </h1>
+    <p class="mt-4 text-lg text-green-100 max-w-2xl mx-auto">
+      Manage farmers, crops, and harvests efficiently with an intuitive and transparent platform.
+    </p>
+    <div class="mt-8 flex justify-center gap-4">
+      <a th:href="@{/login}" class="bg-white text-green-800 px-6 py-3 rounded-lg font-semibold shadow hover:bg-green-100 transition">
+        Login
+      </a>
+      <a th:href="@{/signup}" class="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-green-700 transition">
+        Sign Up
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-16 bg-gray-50">
+  <div class="container mx-auto px-6 text-center max-w-3xl">
+    <h2 class="text-3xl font-bold text-green-800 mb-4">About AgroFlow</h2>
+    <p class="text-gray-700 leading-relaxed">
+      AgroFlow is a digital platform designed to help Krishi Officers manage farmer data, crop planning,
+      harvesting, and sales submissions. With government supervision and field officer input, AgroFlow
+      ensures transparency, efficiency, and fair pricing for farmers across Bangladesh.
+    </p>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="py-16 bg-white">
+  <div class="container mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold text-green-800 mb-12">Key Features</h2>
+    <div class="grid gap-8 md:grid-cols-3">
+
+      <div class="bg-green-50 rounded-lg p-6 shadow hover:shadow-lg transition">
+        <div class="text-green-700 text-4xl mb-4">🌱</div>
+        <h3 class="font-bold text-lg mb-2">Farmer Registration</h3>
+        <p class="text-gray-600 text-sm">Register and manage farmers with ease using our user-friendly interface.</p>
+      </div>
+
+      <div class="bg-green-50 rounded-lg p-6 shadow hover:shadow-lg transition">
+        <div class="text-green-700 text-4xl mb-4">📊</div>
+        <h3 class="font-bold text-lg mb-2">Crop & Harvest Tracking</h3>
+        <p class="text-gray-600 text-sm">Monitor seasonal harvests and keep accurate digital field records.</p>
+      </div>
+
+      <div class="bg-green-50 rounded-lg p-6 shadow hover:shadow-lg transition">
+        <div class="text-green-700 text-4xl mb-4">💰</div>
+        <h3 class="font-bold text-lg mb-2">Fair Pricing System</h3>
+        <p class="text-gray-600 text-sm">Ensure fair prices for farmers with transparent government monitoring.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-green-800 text-white py-6 text-center text-sm">
+  &copy; 2025 AgroFlow | Developed by CUET CSE Students
+</footer>
+
+</body>
+</html>

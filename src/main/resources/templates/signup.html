@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AgroFlow - Officer Sign Up</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center px-4">
+
+<main class="bg-white rounded-lg shadow-lg max-w-md w-full p-8">
+  <div class="flex items-center justify-center mb-6">
+    <img src="/images/logo.jpg" alt="AgroFlow Logo" class="w-14 h-auto mr-3" />
+    <h1 class="text-3xl font-bold text-green-800">AgroFlow</h1>
+  </div>
+
+  <h2 class="text-xl font-semibold text-gray-700 mb-6 text-center">Officer Sign Up</h2>
+
+  <form id="signupForm" class="space-y-5" autocomplete="off">
+
+    <label for="officerId" class="block text-gray-700 font-semibold">Officer ID</label>
+    <input type="text" id="officerId" name="officerId" placeholder="Enter your Officer ID" required
+           class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600" />
+
+    <label for="name" class="block text-gray-700 font-semibold">Full Name</label>
+    <input type="text" id="name" name="name" placeholder="Enter your full name" required
+           class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600" />
+
+    <label for="nid" class="block text-gray-700 font-semibold">National ID (NID)</label>
+    <input type="text" id="nid" name="nid" placeholder="Enter your National ID number" required
+           class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600" />
+
+    <label for="officeLocation" class="block text-gray-700 font-semibold">Office Location</label>
+    <input type="text" id="officeLocation" name="officeLocation" placeholder="Enter your office location" required
+           class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600" />
+
+    <label for="regionAssigned" class="block text-gray-700 font-semibold">Region Assigned</label>
+    <input type="text" id="regionAssigned" name="regionAssigned" placeholder="Enter your assigned region" required
+           class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600" />
+
+    <label for="contact" class="block text-gray-700 font-semibold">Contact</label>
+    <input type="tel" id="contact" name="contact" placeholder="Enter your phone or email" required
+           class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600" />
+
+    <label for="password" class="block text-gray-700 font-semibold">Password</label>
+    <input type="password" id="password" name="password" placeholder="Create a password" required
+           class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600" />
+
+    <button type="submit"
+            class="w-full bg-green-700 hover:bg-green-900 text-white font-bold py-3 rounded-md transition">
+      Sign Up
+    </button>
+  </form>
+
+  <p class="mt-6 text-center text-gray-600">
+    Already have an account?
+    <a th:href="@{/login}" class="text-green-700 font-semibold hover:underline">Login</a>
+  </p>
+
+  <p id="message" class="mt-4 text-center font-semibold"></p>
+</main>
+
+<script>
+  const form = document.getElementById('signupForm');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const officer = {
+      officerId: document.getElementById('officerId').value,
+      name: document.getElementById('name').value,
+      nid: document.getElementById('nid').value,
+      officeLocation: document.getElementById('officeLocation').value,
+      regionAssigned: document.getElementById('regionAssigned').value,
+      contact: document.getElementById('contact').value,
+      password: document.getElementById('password').value
+    };
+
+    const response = await fetch('/auth/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(officer)
+    });
+
+    const message = document.getElementById('message');
+    if(response.ok){
+      message.innerText = 'Signup successful!';
+      form.reset();
+    } else {
+      const text = await response.text();
+      message.innerText = 'Error: ' + text;
+    }
+  });
+</script>
+
+</body>
+</html>
