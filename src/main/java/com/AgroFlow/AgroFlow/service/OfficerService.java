@@ -2,29 +2,34 @@ package com.AgroFlow.AgroFlow.service;
 
 import com.AgroFlow.AgroFlow.entity.Officer;
 import com.AgroFlow.AgroFlow.repository.OfficerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OfficerService {
 
-    @Autowired
-    private OfficerRepository officerRepository;
+    private final OfficerRepository officerRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public Officer registerOfficer(Officer officer) throws Exception {
-        if(officerRepository.existsById(officer.getOfficerId())){
-            throw new Exception("Officer ID already exists!");
+    public OfficerService(OfficerRepository officerRepository,
+                          PasswordEncoder passwordEncoder) {
+        this.officerRepository = officerRepository;
+        this.passwordEncoder  = passwordEncoder;
+    }
+
+    @Transactional
+    public Officer registerOfficer(Officer officer) {
+        if (officerRepository.existsById(officer.getOfficerId())) {
+            throw new IllegalStateException("Officer ID already exists");
         }
-
-        // Save password as plain text (no encoding)
-        // officer.setPassword(passwordEncoder.encode(officer.getPassword()));  <-- REMOVE THIS
+        officer.setPassword(passwordEncoder.encode(officer.getPassword()));
         return officerRepository.save(officer);
     }
 
-    public boolean validateLogin(String officerId, String password){
+    public boolean validateLogin(String officerId, String rawPassword) {
         return officerRepository.findByOfficerId(officerId)
-                .map(officer -> officer.getPassword().equals(password)) // compare plain text
+                .map(o -> passwordEncoder.matches(rawPassword, o.getPassword()))
                 .orElse(false);
     }
-
 }
