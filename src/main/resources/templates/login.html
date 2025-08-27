@@ -48,20 +48,31 @@
     const form = document.getElementById('loginForm');
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
+
         const officerId = document.getElementById('officerId').value;
         const password = document.getElementById('password').value;
-
-        const response = await fetch('/auth/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ officerId, password })
-        });
-
         const message = document.getElementById('message');
-        if(response.ok){
-            message.innerText = 'Login successful!';
-        } else {
-            message.innerText = 'Invalid credentials!';
+
+        try {
+            const response = await fetch('/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ officerId, password })
+            });
+
+            if (response.ok) {
+                message.innerText = 'Login successful!';
+                message.style.color = 'green';
+                setTimeout(() => {
+                    window.location.href = '/officer_dashboard';
+                }, 1000);
+            } else {
+                const errorText = await response.text();
+                message.innerText = errorText || 'Invalid credentials!';
+                message.style.color = 'red';
+            }
+        } catch (error) {
+            message.innerText = 'Something went wrong. Please try again.';
         }
     });
 </script>

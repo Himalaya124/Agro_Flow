@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AgroFlow - Officer Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+
+<!-- Header -->
+<header class="bg-green-800 text-white flex justify-between items-center px-8 py-4 shadow-md">
+    <div class="flex items-center space-x-4">
+        <a href="/index">
+            <img src="/images/logo.jpg" alt="AgroFlow Logo" class="w-12 h-auto rounded-lg" />
+        </a>
+        <div>
+            <h1 class="text-2xl font-bold">AgroFlow</h1>
+            <span class="text-sm opacity-80">Officer Dashboard</span>
+        </div>
+    </div>
+    <div class="flex items-center space-x-4">
+        <div class="text-right">
+            <p class="font-semibold">Demo Officer</p>
+            <p class="text-sm opacity-80">ID: OFF001</p>
+        </div>
+        <img src="/images/officer.jpg" alt="Officer Profile Picture" class="w-10 h-10 rounded-full object-cover" />
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="flex-grow max-w-7xl mx-auto px-6 py-8 space-y-10">
+
+    <!-- Stats Section -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="bg-white shadow rounded-lg p-6 text-center">
+            <h2 class="text-3xl font-extrabold text-green-700" id="registeredFarmersCount">0</h2>
+            <p class="mt-2 font-semibold text-gray-700">Registered Farmers</p>
+        </div>
+        <div class="bg-white shadow rounded-lg p-6 text-center">
+            <h2 class="text-3xl font-extrabold text-gray-700">0</h2>
+            <p class="mt-2 font-semibold text-gray-700">Active Crop Plans</p>
+        </div>
+        <div class="bg-white shadow rounded-lg p-6 text-center">
+            <h2 class="text-3xl font-extrabold text-orange-500">0</h2>
+            <p class="mt-2 font-semibold text-gray-700">Pending Sales</p>
+        </div>
+        <div class="bg-white shadow rounded-lg p-6 text-center">
+            <h2 class="text-3xl font-extrabold text-blue-500">0</h2>
+            <p class="mt-2 font-semibold text-gray-700">Total Harvests</p>
+        </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section>
+        <h2 class="text-xl font-bold text-gray-800 mb-6">Quick Actions</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <!-- Register New Farmer Card -->
+            <div id="register-farmer-btn" class="bg-white shadow rounded-lg p-6 hover:shadow-lg transition cursor-pointer border-l-4 border-green-600">
+                <h3 class="text-lg font-semibold text-green-700 mb-2">Register New Farmer</h3>
+                <p class="text-gray-600">Add a new farmer to the system</p>
+            </div>
+
+            <!-- Link to Registered Farmers page -->
+            <a href="registered_farmers.html" class="bg-white shadow rounded-lg p-6 border-l-4 border-gray-600 flex flex-col cursor-pointer select-none no-underline hover:shadow-lg transition">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Registered Farmers (<span id="registeredFarmersCountLink">0</span>)</h3>
+                <p class="text-gray-600">View and manage registered farmers</p>
+            </a>
+
+            <div class="bg-white shadow rounded-lg p-6 hover:shadow-lg transition cursor-pointer border-l-4 border-orange-500">
+                <h3 class="text-lg font-semibold text-orange-600 mb-2">Statistics</h3>
+                <p class="text-gray-600">Active Plans: 0 | Harvests: 0</p>
+            </div>
+            <div class="bg-white shadow rounded-lg p-6 hover:shadow-lg transition cursor-pointer border-l-4 border-blue-600">
+                <a href="sales.html">
+                    <h3 class="text-lg font-semibold text-blue-600 mb-2">Manage Sales</h3>
+                    <p class="text-gray-600">Process sales requests</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Prices -->
+    <section>
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Market Prices</h2>
+        <div class="bg-white shadow rounded-lg p-8 text-center text-gray-600">
+            <a href="market-price.html">
+                <button class="mt-6 px-6 py-2 bg-green-700 text-white rounded-md hover:bg-green-900 transition"> View Market Price</button>
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<!-- Modal Background -->
+<div id="modal-bg" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40"></div>
+
+<!-- Modal -->
+<div id="register-farmer-modal" class="fixed inset-0 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
+        <button id="modal-close-btn" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-xl font-bold">&times;</button>
+        <h2 class="text-2xl font-bold mb-4 text-green-700">Register New Farmer</h2>
+        <form id="farmerForm" class="space-y-4">
+            <div>
+                <label class="block mb-1 font-semibold"></label>
+                <input type="text" name="farmer_id" class="w-full px-3 py-2 border rounded" placeholder="Farmer ID" required />
+            </div>
+            <div>
+                <label class="block mb-1 font-semibold"></label>
+                <input type="text" name="name" class="w-full px-3 py-2 border rounded" placeholder="Name" required />
+            </div>
+            <div>
+                <label class="block mb-1 font-semibold"></label>
+                <input type="text" name="nid" class="w-full px-3 py-2 border rounded" placeholder="NID" required />
+            </div>
+            <div>
+                <label class="block mb-1 font-semibold"></label>
+                <input type="text" name="address" class="w-full px-3 py-2 border rounded" placeholder="Address" required />
+            </div>
+            <div>
+                <label class="block mb-1 font-semibold"></label>
+                <input type="tel" name="contact_no" class="w-full px-3 py-2 border rounded" placeholder="Contact No" required />
+            </div>
+            <button type="submit" class="w-full bg-green-700 text-white py-2 rounded hover:bg-green-900 transition">Register Farmer</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Elements
+    const registerBtn = document.getElementById('register-farmer-btn');
+    const modal = document.getElementById('register-farmer-modal');
+    const modalBg = document.getElementById('modal-bg');
+    const closeBtn = document.getElementById('modal-close-btn');
+    const farmerForm = document.getElementById('farmerForm');
+
+    const registeredFarmersCount = document.getElementById('registeredFarmersCount');
+    const registeredFarmersCountLink = document.getElementById('registeredFarmersCountLink');
+
+    // Show modal
+    function openModal() {
+        modal.classList.remove('hidden');
+        modalBg.classList.remove('hidden');
+    }
+
+    // Hide modal
+    function closeModal() {
+        modal.classList.add('hidden');
+        modalBg.classList.add('hidden');
+    }
+
+    registerBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    modalBg.addEventListener('click', closeModal);
+
+    // Save/load farmers from localStorage so data persists between pages
+    const STORAGE_KEY = 'agroflow_farmers';
+
+    // Load farmers or empty array
+    let farmers = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+    function saveFarmers() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(farmers));
+    }
+
+    // Update counts shown on dashboard
+    function updateCounts() {
+        registeredFarmersCount.textContent = farmers.length;
+        registeredFarmersCountLink.textContent = farmers.length;
+    }
+
+    // Handle form submission
+    farmerForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const formData = new FormData(farmerForm);
+        const newFarmer = {
+            farmer_id: formData.get('farmer_id').trim(),
+            name: formData.get('name').trim(),
+            nid: formData.get('nid').trim(),
+            address: formData.get('address').trim(),
+            contact_no: formData.get('contact_no').trim(),
+        };
+
+        // Simple duplicate check by farmer_id
+        if (farmers.some(f => f.farmer_id === newFarmer.farmer_id)) {
+            alert('Farmer ID already exists!');
+            return;
+        }
+
+        farmers.push(newFarmer);
+        saveFarmers();
+        updateCounts();
+        farmerForm.reset();
+        closeModal();
+    });
+
+    // Initialize counts on page load
+    updateCounts();
+</script>
+
+</body>
+</html>

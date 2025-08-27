@@ -21,4 +21,13 @@ public class AuthController {
         if(valid) return ResponseEntity.ok("Login successful");
         return ResponseEntity.status(401).body("Invalid credentials");
     }
+    @PostMapping("/signup")
+    public String signup(@RequestBody Officer officer) {
+        try {
+            officerService.registerOfficer(officer);
+            return "Signup successful!";
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
 }
