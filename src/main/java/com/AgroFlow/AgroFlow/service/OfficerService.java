@@ -32,4 +32,5 @@ public class OfficerService {
                 .map(o -> passwordEncoder.matches(rawPassword, o.getPassword()))
                 .orElse(false);
     }
+
 }
