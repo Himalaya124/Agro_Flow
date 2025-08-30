@@ -83,6 +83,7 @@
     const message = document.getElementById('message');
     if(response.ok){
       message.innerText = 'Signup successful!';
+      message.style.color = 'green';
       form.reset();
     } else {
       const text = await response.text();
